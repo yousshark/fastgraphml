@@ -32,10 +32,13 @@ pip install fastgraphml
 #### Example Homogneous Graphs
 
 ```python
-from fastgraphml.graph_embeddings import SAGE, GAT
+from fastgraphml.graph_embeddings import get_sage_model, get_gat_model
 from fastgraphml.graph_embeddings import downstream_tasks
 from fastgraphml import Datasets 
 from arango import ArangoClient
+
+SAGE = get_sage_model()
+GAT  = get_gat_model() 
 
 # Initialize the ArangoDB client.
 client = ArangoClient("http://127.0.0.1:8529")
@@ -66,11 +69,14 @@ embeddings = model.get_embeddings() # get embeddings
 #### Example Heterogeneous Graphs
 
 ```python
-from fastgraphml.graph_embeddings import METAPATH2VEC, DMGI
+from fastgraphml.graph_embeddings import get_metapath2vec_model, get_dmgi_model
 from fastgraphml.graph_embeddings import downstream_tasks 
 from fastgraphml import Datasets 
 
 from arango import ArangoClient
+
+METAPATH2VEC = get_metapath2vec_model()
+DMGI         = get_dmgi_model()
 
 # Initialize the ArangoDB client.
 client = ArangoClient("http://127.0.0.1:8529")
@@ -107,9 +113,12 @@ embeddings = model.get_embeddings() # get embeddings
 ### Use Case 2: Generates Graph Embeddings using PyG graphs:
 
 ```python
-from fastgraphml.graph_embeddings import SAGE, GAT
+from fastgraphml.graph_embeddings import get_sage_model, get_gat_model
 from fastgraphml.graph_embeddings import downstream_tasks 
 from torch_geometric.datasets import Planetoid
+
+SAGE = get_sage_model()
+GAT  = get_gat_model()
 
 # load pyg dataset
 dataset = Planetoid(root='/tmp/Cora', name='Cora')
